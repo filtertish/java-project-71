@@ -1,0 +1,6 @@
+{
+  "name": "Bob",
+  "age": 30,
+  "email": "hello_world@gmail.com",
+  "admin": false
+}
