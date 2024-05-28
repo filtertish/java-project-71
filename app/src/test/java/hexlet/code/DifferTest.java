@@ -3,6 +3,7 @@ package hexlet.code;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+
 public class DifferTest {
     @Test
     public void differTestAdd() {
@@ -30,5 +31,10 @@ public class DifferTest {
             }""";
 
         Assertions.assertEquals(result, actualResult);
+    }
+
+    @Test
+    public void differTestNonExistingFile() {
+        Assertions.assertThrows(RuntimeException.class, () -> Differ.generate("non-exist.json", "non-exist.json"));
     }
 }
