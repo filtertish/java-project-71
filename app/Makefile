@@ -3,3 +3,6 @@ run-dist:
 
 build:
 	./gradlew build
+
+report:
+	./gradlew report
