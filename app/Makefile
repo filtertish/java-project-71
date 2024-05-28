@@ -1,2 +1,5 @@
 run-dist:
-	./build/install/app/bin/app ${param1} ${param2}
+	./build/install/app/bin/app
+
+build:
+	./gradlew build
