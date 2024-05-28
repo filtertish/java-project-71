@@ -6,15 +6,16 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.*;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 public class Differ {
     public static String generate(String firstFilePath, String secondFilePath) {
         var firstFileAsMap = readFileToMap(firstFilePath);
         var secondFileAsMap = readFileToMap(secondFilePath);
-        var result = new StringBuilder();
-
-        result.append("{\n");
+        var result = new StringBuilder("{\n");
 
         for (var key : makeUniqueSortedKeys(firstFileAsMap, secondFileAsMap)) {
             result.append("  ");
