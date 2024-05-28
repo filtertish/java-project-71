@@ -22,6 +22,7 @@ dependencies {
     implementation("info.picocli:picocli:4.7.6")
     annotationProcessor("info.picocli:picocli-codegen:4.7.6")
     implementation("com.fasterxml.jackson.core:jackson-databind:2.17.1")
+    implementation("org.jacoco:org.jacoco.core:0.8.12")
 }
 
 tasks.test {
@@ -29,5 +30,8 @@ tasks.test {
 }
 
 tasks.jacocoTestReport {
-    reports { xml.required.set(true) }
+    dependsOn(tasks.test)
+    reports {
+        xml.required.set(true)
+    }
 }
