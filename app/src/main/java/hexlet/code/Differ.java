@@ -18,8 +18,8 @@ public class Differ {
 
             // Check values for difference if key is in both files
             if (firstFileAsMap.containsKey(key) && secondFileAsMap.containsKey(key)) {
-                var firstValue = firstFileAsMap.get(key);
-                var secondValue = secondFileAsMap.get(key);
+                var firstValue = String.valueOf(firstFileAsMap.get(key));
+                var secondValue = String.valueOf(secondFileAsMap.get(key));
 
                 if (!firstValue.equals(secondValue)) {
                     result.append(String.format("- %s: %s\n", key, firstValue));
@@ -32,7 +32,7 @@ public class Differ {
                 continue;
             }
 
-            // Check if key was removed in second file (exist in first file)
+            // Check if key was removed in second file (exists in first file)
             if (firstFileAsMap.containsKey(key)) {
                 result.append(String.format("- %s: %s\n", key, firstFileAsMap.get(key)));
                 continue;
@@ -46,7 +46,7 @@ public class Differ {
         return result.toString();
     }
 
-    private static List<String> makeUniqueSortedKeys(Map<String, String> first, Map<String, String> second) {
+    private static List<String> makeUniqueSortedKeys(Map<String, Object> first, Map<String, Object> second) {
         Set<String> uniqueKeys = new HashSet<>(first.keySet());
         uniqueKeys.addAll(second.keySet());
 

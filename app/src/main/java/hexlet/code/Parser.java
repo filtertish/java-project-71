@@ -10,7 +10,7 @@ import java.nio.file.Path;
 import java.util.Map;
 
 public class Parser {
-    public static Map<String, String> readFileToMap(String filePath) {
+    public static Map<String, Object> readFileToMap(String filePath) {
         Path pathToFile = Path.of(filePath);
         String fileExtension = pathToFile.toString().split("\\.")[1];
 
