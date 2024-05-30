@@ -21,3 +21,4 @@
 | Format | Example                                           |
 |--------|---------------------------------------------------|
 | JSON   | https://asciinema.org/a/6PdhDGzKMY3bawb0xXrSyhSDR |
+| YAML   | https://asciinema.org/a/3rwJNNXGge4tqLVol4RjfDxgg |                                                 |
