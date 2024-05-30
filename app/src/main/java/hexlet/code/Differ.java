@@ -1,15 +1,11 @@
 package hexlet.code;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
+import static hexlet.code.Parser.readFileToMap;
 
 public class Differ {
     public static String generate(String firstFilePath, String secondFilePath) {
@@ -48,18 +44,6 @@ public class Differ {
 
         result.append("}");
         return result.toString();
-    }
-
-    private static Map<String, String> readFileToMap(String filePath) {
-        ObjectMapper mapper = new ObjectMapper();
-        Path pathToFile = Path.of(filePath);
-
-        try {
-            return mapper.readValue(Files.readString(pathToFile), new TypeReference<>() {
-            });
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
     }
 
     private static List<String> makeUniqueSortedKeys(Map<String, String> first, Map<String, String> second) {
