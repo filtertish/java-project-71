@@ -18,8 +18,9 @@
 
 ## Examples:
 
-| Format      | Example                                           |
-|-------------|---------------------------------------------------|
-| JSON        | https://asciinema.org/a/6PdhDGzKMY3bawb0xXrSyhSDR |
-| YAML        | https://asciinema.org/a/3rwJNNXGge4tqLVol4RjfDxgg |                                                 |
-| JSON Nested | https://asciinema.org/a/maA7F2IW9AzofsYuCg5KL4yRf |                                                 |
+| Format       | Example                                           |
+|--------------|---------------------------------------------------|
+| JSON         | https://asciinema.org/a/6PdhDGzKMY3bawb0xXrSyhSDR |
+| YAML         | https://asciinema.org/a/3rwJNNXGge4tqLVol4RjfDxgg |                                                 |
+| JSON Nested  | https://asciinema.org/a/maA7F2IW9AzofsYuCg5KL4yRf |                                                 |
+| Plain output | https://asciinema.org/a/dR1lH8Ecg7okmIl0lEgUdSZav |                                                 |
