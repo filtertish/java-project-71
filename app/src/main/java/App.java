@@ -31,7 +31,7 @@ public class App implements Runnable {
 
     @Override
     public void run() {
-        System.out.println(Differ.generate(firstFilePath, secondFilePath));
+        System.out.println(Differ.generate(firstFilePath, secondFilePath, formatRequested));
     }
 
 }
