@@ -68,4 +68,10 @@
   "type" : "CHANGED",
   "value1" : true,
   "value2" : "none"
+}, {
+  "key" : "test",
+  "type" : "ADDED",
+  "value1" : {
+    "name" : 1
+  }
 } ]
