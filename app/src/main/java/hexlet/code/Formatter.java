@@ -1,5 +1,6 @@
 package hexlet.code;
 
+import hexlet.code.formatters.JsonFormatter;
 import hexlet.code.formatters.PlainFormatter;
 import hexlet.code.formatters.StylishFormatter;
 
@@ -16,6 +17,8 @@ public class Formatter {
             case "stylish" -> StylishFormatter.format(
                     firstFileAsMap, secondFileAsMap, makeUniqueSortedKeys(firstFileAsMap, secondFileAsMap));
             case "plain" -> PlainFormatter.format(
+                    firstFileAsMap, secondFileAsMap, makeUniqueSortedKeys(firstFileAsMap, secondFileAsMap));
+            case "json" -> JsonFormatter.format(
                     firstFileAsMap, secondFileAsMap, makeUniqueSortedKeys(firstFileAsMap, secondFileAsMap));
             default -> throw new RuntimeException("Provided format doesn't exist");
         };
