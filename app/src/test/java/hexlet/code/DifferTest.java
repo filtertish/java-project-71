@@ -1,7 +1,11 @@
 package hexlet.code;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+
+import java.io.File;
+import java.io.IOException;
 
 
 public class DifferTest {
@@ -116,6 +120,40 @@ public class DifferTest {
                 Property 'setting1' was updated. From 'Some value' to 'Another value'
                 Property 'setting2' was updated. From 200 to 300
                 Property 'setting3' was updated. From true to 'none'""";
+
+        Assertions.assertEquals(actualResult, result);
+    }
+
+    @Test
+    public void differJsonTestJSON() {
+        ObjectMapper mapper = new ObjectMapper();
+        Object result;
+        Object actualResult;
+
+        try {
+            Differ.generate("src/test/resources/base.json", "src/test/resources/modified.json", "json");
+            result = mapper.readValue(new File("src/test/resources/result.json"), Object.class);
+            actualResult = mapper.readValue(new File("src/test/resources/actualResult.json"), Object.class);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        Assertions.assertEquals(actualResult, result);
+    }
+
+    @Test
+    public void differJsonTestYAML() {
+        ObjectMapper mapper = new ObjectMapper();
+        Object result;
+        Object actualResult;
+
+        try {
+            Differ.generate("src/test/resources/base.json", "src/test/resources/modified.json", "json");
+            result = mapper.readValue(new File("src/test/resources/result.json"), Object.class);
+            actualResult = mapper.readValue(new File("src/test/resources/actualResult.json"), Object.class);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
         Assertions.assertEquals(actualResult, result);
     }
