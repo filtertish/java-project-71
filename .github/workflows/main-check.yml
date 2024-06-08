@@ -1,0 +1,30 @@
+name: main-check
+
+on:
+  push:
+    branches:
+      - '**'
+    tags:
+      - '**'
+
+jobs:
+  main:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+      - uses: gradle/gradle-build-action@v3
+        with:
+          gradle-version: 8.5
+      - run: make build
+      - name: Publish code coverage
+        uses: paambaati/codeclimate-action@v5.0.0
+        env:
+          CC_TEST_REPORTER_ID: ${{secrets.CODE_CLIMATE_KEY}}
+          JACOCO_SOURCE_PATH: app/src/main/java
+        with:
+          coverageCommand: make report
+          coverageLocations: app/build/reports/jacoco/test/jacocoTestReport.xml:jacoco
