@@ -9,4 +9,11 @@ public class Differ {
 
         return Formatter.format(firstFileAsMap, secondFileAsMap, format);
     }
+
+    public static String generate(String firstFilePath, String secondFilePath) {
+        var firstFileAsMap = readFileToMap(firstFilePath);
+        var secondFileAsMap = readFileToMap(secondFilePath);
+
+        return Formatter.format(firstFileAsMap, secondFileAsMap, "stylish");
+    }
 }
