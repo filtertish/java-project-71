@@ -1,11 +1,13 @@
 package hexlet.code;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import org.json.JSONException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.skyscreamer.jsonassert.JSONAssert;
 
-import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 
 public class DifferTest {
@@ -125,37 +127,23 @@ public class DifferTest {
     }
 
     @Test
-    public void differJsonTestJSON() {
-        ObjectMapper mapper = new ObjectMapper();
-        Object result;
-        Object actualResult;
+    public void differJsonTestJSON() throws JSONException, IOException {
+        Differ.generate("src/test/resources/base.json", "src/test/resources/modified.json", "json");
 
-        try {
-            Differ.generate("src/test/resources/base.json", "src/test/resources/modified.json", "json");
-            result = mapper.readValue(new File("src/test/resources/result.json"), Object.class);
-            actualResult = mapper.readValue(new File("src/test/resources/actualResult.json"), Object.class);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        String result = Files.readString(Paths.get("src/test/resources/result.json"));
+        String actual = Files.readString(Paths.get("src/test/resources/actualResult.json"));
 
-        Assertions.assertEquals(actualResult, result);
+        JSONAssert.assertEquals(result, actual, false);
     }
 
     @Test
-    public void differJsonTestYAML() {
-        ObjectMapper mapper = new ObjectMapper();
-        Object result;
-        Object actualResult;
+    public void differJsonTestYAML() throws IOException, JSONException {
+        Differ.generate("src/test/resources/base.yaml", "src/test/resources/modified.yaml", "json");
 
-        try {
-            Differ.generate("src/test/resources/base.json", "src/test/resources/modified.json", "json");
-            result = mapper.readValue(new File("src/test/resources/result.json"), Object.class);
-            actualResult = mapper.readValue(new File("src/test/resources/actualResult.json"), Object.class);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        String result = Files.readString(Paths.get("src/test/resources/result.json"));
+        String actual = Files.readString(Paths.get("src/test/resources/actualResult.json"));
 
-        Assertions.assertEquals(actualResult, result);
+        JSONAssert.assertEquals(result, actual, false);
     }
 
     @Test

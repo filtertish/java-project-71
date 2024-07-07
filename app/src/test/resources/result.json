@@ -1,77 +1,72 @@
 [ {
-  "key" : "chars1",
   "type" : "UNCHANGED",
-  "value1" : [ "a", "b", "c" ]
+  "value" : [ "a", "b", "c" ],
+  "key" : "chars1"
 }, {
-  "key" : "chars2",
-  "type" : "CHANGED",
+  "value2" : false,
   "value1" : [ "d", "e", "f" ],
-  "value2" : false
-}, {
-  "key" : "checked",
   "type" : "CHANGED",
+  "key" : "chars2"
+}, {
+  "value2" : true,
   "value1" : false,
-  "value2" : true
-}, {
-  "key" : "default",
-  "type" : null,
-  "value1" : [ "value1", "value2" ]
-}, {
-  "key" : "id",
   "type" : "CHANGED",
+  "key" : "checked"
+}, {
+  "value2" : [ "value1", "value2" ],
+  "value1" : null,
+  "type" : "CHANGED",
+  "key" : "default"
+}, {
+  "value2" : null,
   "value1" : 45,
-  "value2" : null
-}, {
-  "key" : "key1",
-  "type" : "REMOVED",
-  "value1" : "value1"
-}, {
-  "key" : "key2",
-  "type" : "ADDED",
-  "value1" : "value2"
-}, {
-  "key" : "numbers1",
-  "type" : "UNCHANGED",
-  "value1" : [ 1, 2, 3, 4 ]
-}, {
-  "key" : "numbers2",
   "type" : "CHANGED",
-  "value1" : [ 2, 3, 4, 5 ],
-  "value2" : [ 22, 33, 44, 55 ]
+  "key" : "id"
 }, {
-  "key" : "numbers3",
   "type" : "REMOVED",
-  "value1" : [ 3, 4, 5 ]
+  "value" : "value1",
+  "key" : "key1"
 }, {
-  "key" : "numbers4",
   "type" : "ADDED",
-  "value1" : [ 4, 5, 6 ]
+  "value" : "value2",
+  "key" : "key2"
 }, {
-  "key" : "obj1",
+  "type" : "UNCHANGED",
+  "value" : [ 1, 2, 3, 4 ],
+  "key" : "numbers1"
+}, {
+  "value2" : [ 22, 33, 44, 55 ],
+  "value1" : [ 2, 3, 4, 5 ],
+  "type" : "CHANGED",
+  "key" : "numbers2"
+}, {
+  "type" : "REMOVED",
+  "value" : [ 3, 4, 5 ],
+  "key" : "numbers3"
+}, {
   "type" : "ADDED",
-  "value1" : {
+  "value" : [ 4, 5, 6 ],
+  "key" : "numbers4"
+}, {
+  "type" : "ADDED",
+  "value" : {
     "nestedKey" : "value",
     "isNested" : true
-  }
+  },
+  "key" : "obj1"
 }, {
-  "key" : "setting1",
-  "type" : "CHANGED",
+  "value2" : "Another value",
   "value1" : "Some value",
-  "value2" : "Another value"
-}, {
-  "key" : "setting2",
   "type" : "CHANGED",
+  "key" : "setting1"
+}, {
+  "value2" : 300,
   "value1" : 200,
-  "value2" : 300
-}, {
-  "key" : "setting3",
   "type" : "CHANGED",
-  "value1" : true,
-  "value2" : "none"
+  "key" : "setting2"
 }, {
-  "key" : "test",
-  "type" : "ADDED",
-  "value1" : {
-    "name" : 1
-  }
+  "value2" : "none",
+  "value1" : true,
+  "type" : "CHANGED",
+  "key" : "setting3"
 } ]
