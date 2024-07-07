@@ -4,40 +4,27 @@ import java.util.List;
 import java.util.Map;
 
 public class StylishFormatter {
-    public static String format(Map<String, Object> firstFileAsMap, Map<String, Object> secondFileAsMap,
-                                List<String> uniqueKeys) {
-        var result = new StringBuilder("{\n");
+    public static String format(List<Map<String, Object>> differ) {
+        var result = new StringBuilder("{");
 
-        for (var key : uniqueKeys) {
+        for (var diff : differ) {
+            result.append("\n");
             result.append("  ");
 
-            // Check values for difference if key is in both files
-            if (firstFileAsMap.containsKey(key) && secondFileAsMap.containsKey(key)) {
-                var firstValue = String.valueOf(firstFileAsMap.get(key));
-                var secondValue = String.valueOf(secondFileAsMap.get(key));
-
-                if (!firstValue.equals(secondValue)) {
-                    result.append(String.format("- %s: %s\n", key, firstValue));
-                    result.append("  ");
-                    result.append(String.format("+ %s: %s\n", key, secondValue));
-                    continue;
+            switch (String.valueOf(diff.get("type"))) {
+                case "UNCHANGED" -> result.append(String.format("  %s: %s", diff.get("key"), diff.get("value")));
+                case "CHANGED" -> {
+                    result.append(String.format("- %s: %s", diff.get("key"), diff.get("value1")));
+                    result.append("\n  ");
+                    result.append(String.format("+ %s: %s", diff.get("key"), diff.get("value2")));
                 }
-
-                result.append(String.format("  %s: %s\n", key, secondValue));
-                continue;
+                case "ADDED" -> result.append(String.format("+ %s: %s", diff.get("key"), diff.get("value")));
+                case "REMOVED" -> result.append(String.format("- %s: %s", diff.get("key"), diff.get("value")));
+                default -> throw new IllegalStateException("Unexpected \"type\" value");
             }
-
-            // Check if key was removed in second file (exists in first file)
-            if (firstFileAsMap.containsKey(key)) {
-                result.append(String.format("- %s: %s\n", key, firstFileAsMap.get(key)));
-                continue;
-            }
-
-            // Key not in the first file, so it was added to the second file
-            result.append(String.format("+ %s: %s\n", key, secondFileAsMap.get(key)));
         }
 
-        result.append("}");
+        result.append("\n}");
         return result.toString();
     }
 }

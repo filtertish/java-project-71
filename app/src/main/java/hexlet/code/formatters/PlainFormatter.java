@@ -4,52 +4,20 @@ import java.util.List;
 import java.util.Map;
 
 public class PlainFormatter {
-    public static String format(Map<String, Object> firstFileAsMap, Map<String, Object> secondFileAsMap,
-                                List<String> uniqueKeys) {
+    public static String format(List<Map<String, Object>> differ) {
         var result = new StringBuilder();
 
-        for (var key : uniqueKeys) {
-            var firstValue = firstFileAsMap.get(key);
-            var secondValue = secondFileAsMap.get(key);
-
-            // Check values for difference if key is in both files
-            if (firstFileAsMap.containsKey(key) && secondFileAsMap.containsKey(key)) {
-                // Case when first value is null
-                if (firstValue == null) {
-                    if (secondValue != null) {
-                        result.append(String.format("Property '%s' was updated. From %s to %s\n",
-                                key, "null", formatValue(secondValue)));
-                    }
-                    continue;
+        for (var diff : differ) {
+            switch (String.valueOf(diff.get("type"))) {
+                case "UNCHANGED" -> {
                 }
-
-                //Case when second value is null
-                if (secondValue == null) {
-                    result.append(String.format("Property '%s' was updated. From %s to %s\n",
-                            key, formatValue(firstValue), "null"));
-                    continue;
-                }
-
-                //Case when both values are not null and equals
-                if (firstValue.equals(secondValue)) {
-                    continue;
-                }
-
-                //Case when both values are not null and not equals
-                result.append(String.format("Property '%s' was updated. From %s to %s\n",
-                        key, formatValue(firstValue), formatValue(secondValue)));
-                continue;
+                case "CHANGED" -> result.append(String.format("Property '%s' was updated. From %s to %s\n",
+                        diff.get("key"), formatValue(diff.get("value1")), formatValue(diff.get("value2"))));
+                case "ADDED" -> result.append(String.format("Property '%s' was added with value: %s\n",
+                        diff.get("key"), formatValue(diff.get("value"))));
+                case "REMOVED" -> result.append(String.format("Property '%s' was removed\n", diff.get("key")));
+                default -> throw new IllegalStateException("Unexpected \"type\" value");
             }
-
-            // Check if key was removed in second file (exists in first file)
-            if (firstFileAsMap.containsKey(key)) {
-                result.append(String.format("Property '%s' was removed\n", key));
-                continue;
-            }
-
-            // Key not in the first file, so it was added to the second file
-            result.append(String.format("Property '%s' was added with value: %s\n",
-                    key, formatValue(secondValue)));
         }
 
         return result.toString().trim();
