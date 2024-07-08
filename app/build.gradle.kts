@@ -9,7 +9,7 @@ group = "hexlet.code"
 version = "1.0-SNAPSHOT"
 
 application {
-    mainClass = "./src/main/java/App.java"
+    mainClass = "./src/main/java/hexlet/code/App.java"
 }
 
 repositories {
