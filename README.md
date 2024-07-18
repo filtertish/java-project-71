@@ -10,18 +10,23 @@
 
 ## *Cli utility to show changes between two files*
 
-### How to run
+Supports JSON and YAML formats.
 
-#### *todo*
+### How to run
+    git clone https://github.com/filtertish/java-project-71.git
+    cd java-project-71/app
+    make install-dist
+    ./build/install/app/bin/app
 
 ---
 
 ## Examples:
 
-| Format       | Example                                           |
-|--------------|---------------------------------------------------|
-| JSON Stylish | https://asciinema.org/a/6PdhDGzKMY3bawb0xXrSyhSDR |
-| YAML Stylish | https://asciinema.org/a/3rwJNNXGge4tqLVol4RjfDxgg |                                                 |
-| JSON Nested  | https://asciinema.org/a/maA7F2IW9AzofsYuCg5KL4yRf |                                                 |
-| Plain output | https://asciinema.org/a/dR1lH8Ecg7okmIl0lEgUdSZav |                                                 |
-| JSON output  | https://asciinema.org/a/LnQkP0XLv0UNWHInT9XgiD0sy |
+| Format         | Example                                           |
+|----------------|---------------------------------------------------|
+| Default format | https://asciinema.org/a/3w9DWJ29LsaJdH6lxnNWopmXx |
+| JSON Stylish   | https://asciinema.org/a/6PdhDGzKMY3bawb0xXrSyhSDR |
+| YAML Stylish   | https://asciinema.org/a/3rwJNNXGge4tqLVol4RjfDxgg |                                                 |
+| JSON Nested    | https://asciinema.org/a/maA7F2IW9AzofsYuCg5KL4yRf |                                                 |
+| Plain output   | https://asciinema.org/a/dR1lH8Ecg7okmIl0lEgUdSZav |                                                 |
+| JSON output    | https://asciinema.org/a/LnQkP0XLv0UNWHInT9XgiD0sy |
