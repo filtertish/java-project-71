@@ -1,5 +1,7 @@
 package hexlet.code.formatters;
 
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -23,25 +25,15 @@ public class PlainFormatter {
         return result.toString().trim();
     }
 
+    @SuppressWarnings("rawtypes")
     private static String formatValue(Object value) {
-        if (value == null) {
-            return "null";
-        }
+        return switch (value) {
+            case null -> "null";
+            case LinkedHashMap ignored -> "[complex value]";
+            case ArrayList ignored -> "[complex value]";
+            case String ignored -> "'" + value + "'";
+            default -> "" + value;
+        };
 
-        String valueClassName = value.getClass().toString();
-
-        if (valueClassName.endsWith("LinkedHashMap")) {
-            return "[complex value]";
-        }
-
-        if (valueClassName.endsWith("ArrayList")) {
-            return "[complex value]";
-        }
-
-        if (valueClassName.endsWith("String")) {
-            return "'" + value + "'";
-        }
-
-        return "" + value;
     }
 }
