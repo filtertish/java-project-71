@@ -14,8 +14,8 @@ import java.nio.file.Paths;
 
 
 public class DifferTest {
-    public static String stylishResult;
-    public static String plainResult;
+    private static String stylishResult;
+    private static String plainResult;
 
     @BeforeAll
     public static void initialize() throws IOException {
