@@ -16,6 +16,8 @@ import java.nio.file.Paths;
 public class DifferTest {
     private static String stylishResult;
     private static String plainResult;
+    private static String jsonResult;
+    private static String jsonActualResult;
 
     @BeforeAll
     public static void initialize() throws IOException {
@@ -24,6 +26,8 @@ public class DifferTest {
 
         stylishResult = Files.readString(stylishResultPath);
         plainResult = Files.readString(plainResultPath);
+        jsonResult = Differ.generate(buildPath("base.json"), buildPath("modified.json"), "json");
+        jsonActualResult = Files.readString(Paths.get(buildPath("actualResult.json")));
     }
 
     @Test
@@ -71,23 +75,13 @@ public class DifferTest {
     }
 
     @Test
-    public void differJsonTestJSON() throws JSONException, IOException {
-        Differ.generate(buildPath("base.json"), buildPath("modified.json"), "json");
-
-        String result = Files.readString(Paths.get(buildPath("result.json")));
-        String actual = Files.readString(Paths.get(buildPath("actualResult.json")));
-
-        JSONAssert.assertEquals(result, actual, false);
+    public void differJsonTestJSON() throws JSONException {
+        JSONAssert.assertEquals(jsonResult, jsonActualResult, false);
     }
 
     @Test
-    public void differJsonTestYAML() throws IOException, JSONException {
-        Differ.generate(buildPath("base.yaml"), buildPath("modified.yaml"), "json");
-
-        String result = Files.readString(Paths.get(buildPath("result.json")));
-        String actual = Files.readString(Paths.get(buildPath("actualResult.json")));
-
-        JSONAssert.assertEquals(result, actual, false);
+    public void differJsonTestYAML() throws JSONException {
+        JSONAssert.assertEquals(jsonResult, jsonActualResult, false);
     }
 
     @Test

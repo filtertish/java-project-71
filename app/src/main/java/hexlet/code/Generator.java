@@ -14,37 +14,20 @@ public class Generator {
 
         var differ = new ArrayList<Map<String, Object>>();
 
+
         for (var key : uniqueSortedKeys) {
-            if (!firstFile.containsKey(key)) {
-                var value = secondFile.get(key);
-                differ.add(computeMap(key, "ADDED", value));
-                continue;
-            }
-
-            if (!secondFile.containsKey(key)) {
-                var value = firstFile.get(key);
-                differ.add(computeMap(key, "REMOVED", value));
-                continue;
-            }
-
             var firstValue = firstFile.get(key);
             var secondValue = secondFile.get(key);
 
-            if (firstValue == null) {
-                differ.add(secondValue == null
-                        ? computeMap(key, "UNCHANGED", null)
-                        : computeMap(key, (Object) null, secondValue));
-                continue;
+            if (!firstFile.containsKey(key)) {
+                differ.add(computeMap(key, "ADDED", secondValue));
+            } else if (!secondFile.containsKey(key)) {
+                differ.add(computeMap(key, "REMOVED", firstValue));
+            } else {
+                differ.add(Objects.equals(firstValue, secondValue)
+                        ? computeMap(key, "UNCHANGED", firstValue)
+                        : computeMap(key, firstValue, secondValue));
             }
-
-            if (secondValue == null) {
-                differ.add(computeMap(key, firstValue, null));
-                continue;
-            }
-
-            differ.add(Objects.equals(firstValue, secondValue)
-                    ? computeMap(key, "UNCHANGED", firstValue)
-                    : computeMap(key, firstValue, secondValue));
         }
 
         return differ;

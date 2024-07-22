@@ -1,7 +1,6 @@
 package hexlet.code.formatters;
 
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
@@ -29,8 +28,8 @@ public class PlainFormatter {
     private static String formatValue(Object value) {
         return switch (value) {
             case null -> "null";
-            case LinkedHashMap ignored -> "[complex value]";
-            case ArrayList ignored -> "[complex value]";
+            case Map ignored -> "[complex value]";
+            case Collection ignored -> "[complex value]";
             case String ignored -> "'" + value + "'";
             default -> "" + value;
         };

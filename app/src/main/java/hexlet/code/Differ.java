@@ -8,12 +8,10 @@ import java.nio.file.Path;
 public class Differ {
     public static String generate(String firstFilePath, String secondFilePath, String format) throws IOException {
         var firstFileString = Files.readString(Path.of(firstFilePath));
-        var firstFileExtension = firstFilePath.split("\\.")[1];
         var secondFileString = Files.readString(Path.of(secondFilePath));
-        var secondFileExtension = secondFilePath.split("\\.")[1];
 
-        var firstFile = Parser.readFileToMap(firstFileString, firstFileExtension);
-        var secondFile = Parser.readFileToMap(secondFileString, secondFileExtension);
+        var firstFile = Parser.readFileToMap(firstFileString, extractExtension(firstFilePath));
+        var secondFile = Parser.readFileToMap(secondFileString, extractExtension(secondFilePath));
 
         var diff = Generator.makeDiff(firstFile, secondFile);
 
@@ -22,5 +20,9 @@ public class Differ {
 
     public static String generate(String firstFilePath, String secondFilePath) throws IOException {
         return generate(firstFilePath, secondFilePath, "stylish");
+    }
+
+    private static String extractExtension(String filePath) {
+        return filePath.split("\\.")[1];
     }
 }
